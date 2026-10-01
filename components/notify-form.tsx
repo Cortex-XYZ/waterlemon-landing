@@ -88,7 +88,7 @@ export function NotifyForm({ className }: { className?: string }) {
             id="email-note"
             className={cn("mt-3.5 text-[15px]", error ? "text-destructive" : "text-muted-foreground")}
           >
-            {error ?? "One email when we launch · no spam"}
+            {error ?? ""}
           </p>
         </>
       )}

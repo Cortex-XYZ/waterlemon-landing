@@ -9,22 +9,22 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         question: "What is WaterLeMON?",
         answer:
-          "An app that helps you move from saving to investing. You see your options explained in plain words, including the risks, and you decide what’s next.",
+          "A financial app designed to meet you where you are, and help you grow. ",
       },
       {
-        question: "Who is it for?",
+        question: "Is WaterLeMON for me?",
         answer:
-          "Anyone who wants to start investing, wherever you live and whatever your age. If it’s your first time, you’re in the right place.",
+          " Yes, you're who we’re building for. Designed to bring guidance into the experience.",
       },
       {
-        question: "Do I need to know about investing or crypto?",
+        question: "What will I be able to do with my money?",
         answer:
-          "No. There’s no seed phrase and no wallet to connect, just one simple account. We explain each option before you choose it.",
+          "There will be different strategies and yielding/investing options you can choose, based on your risk profile. You will be able to grow it.",
       },
       {
-        question: "What does the AI Companion do?",
+        question: "How much money will I need to start?",
         answer:
-          "It answers your questions about your options in plain language, so you understand what you’re choosing. It explains. You decide.",
+          "You can start with $5. If you join the waitlist, we add them for you.",
       },
     ],
   },
@@ -49,19 +49,14 @@ export const FAQ_GROUPS: FaqGroup[] = [
     title: "The waitlist",
     items: [
       {
-        question: "When does WaterLeMON open?",
+        question: "When does WaterLeMON launch?",
         answer:
-          "We haven’t set a date yet. Join the waitlist and we’ll email you the day it opens.",
+          "Soon",
       },
       {
         question: "What happens after I join?",
-        answer: "You get one email when we launch. No newsletters, no spam.",
-      },
-      {
-        question: "Can I leave the waitlist?",
-        answer:
-          "Yes. Email hello@waterlemon.app and we’ll remove your address.",
-      },
+        answer: "You get early beta access to our app.",
+      }
     ],
   },
 ]

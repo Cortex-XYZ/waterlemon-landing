@@ -35,12 +35,12 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         question: "Can I lose money?",
         answer:
-          "Yes. Investments can lose value, and returns are variable and not guaranteed. Before you invest, we show you what could change and why.",
+          "Not really",
       },
       {
         question: "Will you promise a return?",
         answer:
-          "No. Nobody can promise growth. We show every return next to its risk, so you can see the full picture before you choose.",
+          "No. We're not pormising anything, but you're invited to share the pie with us.",
       },
     ],
   },

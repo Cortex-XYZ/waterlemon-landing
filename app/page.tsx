@@ -15,14 +15,14 @@ export default function Home() {
             className="animate-enter"
             style={stagger(0)}
           >
-            Coming soon
+            Soon
           </Badge>
 
           <h1
             className="animate-enter mt-6 font-display text-[clamp(52px,11vw,96px)] leading-[0.96] font-extrabold tracking-[-0.045em] text-balance text-forest"
             style={stagger(1)}
           >
-            Coming into season.
+            Coming into season
           </h1>
 
           <p

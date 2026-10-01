@@ -1,80 +1,273 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* WaterLeMON tokens */
+:root {
+  color-scheme: light;
+
+  --coral: oklch(0.67 0.21 24.807);
+  --grass: oklch(0.755 0.22 135.289);
+  --forest: oklch(0.271 0.057 162.064);
+  --gold: oklch(0.887 0.182 95.276);
+  --cream: oklch(0.968 0.011 84.578);
+  --white: oklch(1 0 0);
+  --stone-800: oklch(0.392 0.027 153.265);
+  --stone-600: oklch(0.513 0.023 149.763);
+  --sand-100: oklch(0.908 0.02 84.591);
+  --sage-300: oklch(0.803 0.04 128.311);
+  --grass-600: oklch(0.649 0.188 134.951);
+  --alert: oklch(0.541 0.201 14.08);
+
+  /* shadcn semantic tokens, mapped to the brand's cream theme */
+  --background: var(--cream);
+  --foreground: var(--forest);
+  --card: var(--white);
+  --card-foreground: var(--forest);
+  --popover: var(--white);
+  --popover-foreground: var(--forest);
+  --primary: var(--forest);
+  --primary-foreground: var(--cream);
+  --secondary: var(--white);
+  --secondary-foreground: var(--forest);
+  --muted: var(--sand-100);
+  --muted-foreground: var(--stone-600);
+  --accent: var(--gold);
+  --accent-foreground: var(--forest);
+  --destructive: var(--alert);
+  --border: var(--sand-100);
+  --input: var(--forest);
+  --ring: var(--coral);
+  --body: var(--stone-800);
+  --seed: var(--coral);
+  --radius: 0.875rem;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --band-bottom: clamp(112px, 24vw, 190px);
+  --band-top: clamp(64px, 11vw, 120px);
+}
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-montreal), system-ui, sans-serif;
+  --font-display: var(--font-jakarta), "Arial Black", sans-serif;
+
+  --color-coral: var(--coral);
+  --color-grass: var(--grass);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --color-body: var(--body);
+  --color-seed: var(--seed);
+  --color-sage: var(--sage-300);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.3);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --ease-out-strong: var(--ease-out-strong);
 }
 
-:root {
-  color-scheme: dark;
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
 }
 
-body {
-  background: #07080a;
-  color: #f5f5f5;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
-.blob {
-  position: absolute;
-  width: 42vmax;
-  height: 42vmax;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.35;
-  will-change: transform;
+@keyframes rise {
+  from {
+    transform: translateY(100%);
+  }
 }
 
-.blob-rind {
-  top: -12%;
-  left: -8%;
-  background: #1f9d55;
-  animation: drift-a 22s ease-in-out infinite alternate;
+@keyframes drop {
+  from {
+    transform: translateY(-100%);
+  }
 }
 
-.blob-flesh {
-  bottom: -15%;
-  right: -10%;
-  background: #ff4d6d;
-  animation: drift-b 26s ease-in-out infinite alternate;
+@utility animate-enter {
+  animation: enter-up 600ms var(--ease-out-strong) both;
+  animation-delay: calc(var(--stagger, 0) * 80ms);
 }
 
-.blob-lemon {
-  top: 35%;
-  left: 40%;
-  width: 26vmax;
-  height: 26vmax;
-  background: #f5d547;
-  opacity: 0.15;
-  animation: drift-c 30s ease-in-out infinite alternate;
+@utility animate-rise {
+  animation: rise 900ms var(--ease-out-strong) both;
+  animation-delay: calc(200ms + var(--stagger, 0) * 70ms);
 }
 
-@keyframes drift-a {
-  to { transform: translate(18vw, 22vh) scale(1.15); }
-}
-
-@keyframes drift-b {
-  to { transform: translate(-20vw, -18vh) scale(1.1); }
-}
-
-@keyframes drift-c {
-  to { transform: translate(-25vw, 10vh) scale(0.85); }
-}
-
-.fade-in {
-  opacity: 0;
-  animation: fade-in 1.4s ease-out forwards;
-}
-
-.fade-in-delay {
-  animation-delay: 0.5s;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); filter: blur(6px); }
-  to { opacity: 1; transform: none; filter: none; }
+@utility animate-drop {
+  animation: drop 800ms var(--ease-out-strong) both;
+  animation-delay: calc(150ms + var(--stagger, 0) * 60ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blob { animation: none; }
-  .fade-in { animation: none; opacity: 1; }
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes drop {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.nav-forward) {
+  --slide-offset: -80px;
+  animation:
+    160ms ease-in both vt-fade reverse,
+    420ms var(--ease-in-out-strong) both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 80px;
+  animation:
+    260ms ease-out 120ms both vt-fade,
+    420ms var(--ease-in-out-strong) both vt-slide;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 80px;
+  animation:
+    160ms ease-in both vt-fade reverse,
+    420ms var(--ease-in-out-strong) both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -80px;
+  animation:
+    260ms ease-out 120ms both vt-fade,
+    420ms var(--ease-in-out-strong) both vt-slide;
+}
+
+/* The header anchors the slide: it stays put and swaps to the destination page's version. */
+::view-transition-group(site-header) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-in-out-strong);
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/*
+ * The header button morphs between pages. The group draws the pill itself so its width
+ * animates cleanly (the snapshots would stretch the rounded ends), and the label cross-fades
+ * with a light blur at its natural size.
+ */
+::view-transition-group(nav-button) {
+  animation-duration: 360ms;
+  animation-timing-function: var(--ease-out-strong);
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border);
+  z-index: 101;
+}
+::view-transition-old(nav-button),
+::view-transition-new(nav-button) {
+  animation: none;
+  opacity: 0;
+}
+::view-transition-group(nav-label) {
+  animation-duration: 360ms;
+  animation-timing-function: var(--ease-out-strong);
+  z-index: 102;
+}
+::view-transition-old(nav-label),
+::view-transition-new(nav-label) {
+  width: auto;
+  height: 100%;
+  inset-inline: 0;
+  margin-inline: auto;
+}
+::view-transition-old(nav-label) {
+  animation: 100ms ease-in both vt-blur reverse;
+}
+::view-transition-new(nav-label) {
+  animation: 220ms ease-out 150ms both vt-blur;
+}
+
+@keyframes vt-blur {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-slide {
+  from {
+    translate: var(--slide-offset) 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(.nav-forward),
+  ::view-transition-old(.nav-back) {
+    animation: 160ms ease-in both vt-fade reverse;
+  }
+  ::view-transition-new(.nav-forward),
+  ::view-transition-new(.nav-back) {
+    animation: 200ms ease-out 80ms both vt-fade;
+  }
+  ::view-transition-group(site-header),
+  ::view-transition-group(nav-button),
+  ::view-transition-group(nav-label) {
+    animation-duration: 0s;
+  }
 }
